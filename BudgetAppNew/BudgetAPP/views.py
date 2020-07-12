@@ -1,14 +1,10 @@
 from django.shortcuts import render, redirect
 from BudgetAPP.forms import *
 from django.views.generic import TemplateView
-from django.utils.dateparse import parse_date
 from django.db.models import Sum
-from django.db.models.functions import TruncMonth,TruncWeek,TruncDay
-from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.contrib.auth import logout
+from.models import *
 
-import matplotlib
 class Home(TemplateView):
 
     model_name = AccountInfo
@@ -18,7 +14,6 @@ class Home(TemplateView):
         user = request.session["username"]
         context={}
         context["user"] = user
-
         return render(request,self.template_name,context)
 
 class Registration(TemplateView):
