@@ -11,9 +11,10 @@ class Home(TemplateView):
     template_name = "BudgetApp/Home.html"
 
     def get(self, request, *args, **kwargs):
-        user = request.session["username"]
+        user = request.session.get("username")
         context={}
-        context["user"] = user
+        if user:
+            context["user"] = request.user
         return render(request,self.template_name,context)
 
 class Registration(TemplateView):
